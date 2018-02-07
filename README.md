@@ -1,8 +1,14 @@
 # Programarea in retea
-Lucrari de laborator la disciplina Medii Interactive de Dezvoltare a Produselor Soft 
+Lucrari de laborator la disciplina Programarea in retea
 
-Studentul grupei TI-154 Popusoi Victor
+Studentul grupei TI-153 Popusoi Victor
 
 ## Autor
 
 * **Popusoi Victor** 
+
+### Lucrarea de laborator nr.1
+
+Pentru a merge la continutul lucarii de laborator nr.1 click here 
+
+
