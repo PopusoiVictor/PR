@@ -9,6 +9,6 @@ Studentul grupei TI-153 Popusoi Victor
 
 ### Lucrarea de laborator nr.1
 
-Pentru a merge la continutul lucarii de laborator nr.1 click here 
+Pentru a merge la continutul lucarii de laborator nr.1 click [here](https://github.com/PopusoiVictor/PR/tree/master/Laborator%201)
 
 
