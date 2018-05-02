@@ -1,5 +1,20 @@
-const {exec} = require('child_process')
-var fs = require('fs')
+function fileread(path,stats,callback){
+  var buffer = new Buffer(stats.size);
+  fs.readFile(path, buffer, function(err, data){
+     if(err){
+        throw err;
+     }
+     callback(null, data);
+  });
+}
+function testAsync() {
+  var files = ['categories.csv', 'orders.csv'];
+  async.map(files, fs.readFile, function (err, data) {
+      for(var i = 0, l = data.length ; i < l ; i++) {
+          console.log( data[i].toString() );
+      }
+  });
+}
 var count = 0,
   nr = 0
 var categories = [],
@@ -8,12 +23,14 @@ var done = function (next) {
   console.log('All done')
   next()
 }
-function fireFileRead () {
+
+function fireFileRead() {
   nr++
   if (2 == nr)
     doneFileRead()
 }
-function fired (err, stdout, stderr) {
+
+function fired(err, stdout, stderr) {
   console.log(stdout)
   count++
   if (2 == count)
@@ -34,11 +51,15 @@ function fired (err, stdout, stderr) {
       })
     })
 }
-function cat () {this.orders = [];}
-cat.prototype.toString = function catToString () {
+
+function cat() {
+  this.orders = [];
+}
+cat.prototype.toString = function catToString() {
   return '[' + this.categoryId + ' ' + this.name + ' ' + this.parentId + `]`
 }
-function doneFileRead () {
+
+function doneFileRead() {
   var arr = [categories, orders]
   var filterResult = categories.filter(n => !n[2])
   var k = new Tree()
@@ -113,20 +134,20 @@ function doneFileRead () {
   }
   console.log(k)
 }
-exec('node src/main/reqOrders.js', fired)
-exec('node src/main/reqCategories.js', fired)
-function Node (data) {
+
+function Node(data) {
   this.data = data
   this.children = []
 }
-function Tree () {
+
+function Tree() {
   this.root = null
 }
 Tree.prototype.add = function (data, toNodeData) {
   var node = new Node(data)
-  var parent = toNodeData
-    ? this.findBFS(toNodeData)
-    : null
+  var parent = toNodeData ?
+    this.findBFS(toNodeData) :
+    null
   if (parent) {
     parent
       .children
